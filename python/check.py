@@ -19,15 +19,18 @@ def account_check():
     #reactからの値の取得
     accountNumber = request.json['accountNumber']
     password = request.json['password']
+    print(accountNumber,password)
 
     det = account_search(accountNumber, password)
     
-    print(det)
+    # print(det)
 
     if(det):
+        print('success\n')
         #エラーがないときは200を返す
         return jsonify(), 200
     else:
+        print('lost\n')
         return jsonify(), 300
 
 

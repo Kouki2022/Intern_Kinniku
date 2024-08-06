@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS users (
     photo BLOB,
     balance REAL,
     account_number INTEGER,
-    registered_id INTEGER
+    registered_id INTEGER 
 )
 ''')
 
@@ -101,7 +101,7 @@ def get_data_sender(sender_id):
 def account_search(id, password):
     conn = sqlite3.connect(dbFile)
     c = conn.cursor()
-    c.execute('select * from users where id =  ? AND password = ?', (id, password))
+    c.execute('select * from users where account_number =  ? AND password = ?', (id, password))
     user = c.fetchone()
     conn.commit()
     conn.close()
