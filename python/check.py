@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import sqlite3
 from flask_cors import CORS
-from db import insert_past, get_data_sender, account_search
+from db import get_data_sender, account_search, insert_send, balance_send
 
 
 
@@ -30,6 +30,35 @@ def account_check():
     if(user):
         print('success\n')
         return list(user)
+    else:
+        print('lost\n')
+        return jsonify(), 300
+
+
+#送金時に使用
+@app.route('/send-money', methods=['POST'])
+def send():
+
+    #reactからの値の取得
+    sender_id = request.json['sender_id']
+    receiver_id = request.json['receiver_id']
+    amount = request.json['amount']
+    type = request.json['type']
+    message = request.json['message']
+    determination = request.json['determination']
+
+    print(sender_id, receiver_id, amount, type,  message, determination)
+
+    #履歴データベースに追加
+    det = insert_send(sender_id, receiver_id, amount, type,  message, determination)
+    
+    #残高の増減
+    det2 = balance_send(sender_id, receiver_id, amount)
+
+
+    if(det & det2):
+        print('success\n')
+        return jsonify(), 200
     else:
         print('lost\n')
         return jsonify(), 300

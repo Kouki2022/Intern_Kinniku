@@ -11,6 +11,8 @@ function HelloWorld() {
     const navigate = useNavigate();
     const location = useLocation();
     const recipient = location.state?.recipient || { name: 'サンプル氏名', icon: icon1 };
+    const type = 'send'
+    const determination = true
 
     
     const handleAmountChange = (event) => {
@@ -27,17 +29,47 @@ function HelloWorld() {
         setMessage(selectedTemplate); // テンプレートを選択するとメッセージフィールドに反映
     };
 
-    const handleSend = () => {
-        if (amount > 0 && amount <= 50000) {
-            // 送金処理が成功したと仮定
-            navigate('/completion', { 
-                state: { 
-                    amount: amount,
-                    recipient: recipient.name,
-                    message: message
-                }
+    const handleSend = async(e) => {
+        e.preventDefault();
+
+        //ローカルストレージからユーザ情報を取得
+        const user = JSON.parse(localStorage.getItem('user'));
+        const sender_id = user[0]
+        const receiver_id = recipient.id
+
+        const send_data = {sender_id, receiver_id, amount, type,  message, determination}
+        console.log(send_data)
+
+        //dbに接続して履歴データベースに登録
+        try {
+            const response = await fetch('http://localhost:5000/send-money', {
+              method: 'POST',
+              headers: {
+                'Access-Control-Allow-Origin':'*',
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(send_data),
             });
-        }
+            
+            if (response.ok) {
+                //localストレージの残高も変更
+                user[4] -= amount
+                localStorage.setItem('user', JSON.stringify(user));
+
+                navigate('/completion', { 
+                    state: { 
+                        amount: amount,
+                        recipient: recipient.name,
+                        message: message
+                    }
+                });
+            }
+
+          } catch (error) {
+            console.error('Error creating transaction:', error.message);
+            // エラー時の処理
+          }
+
     };
 
     return (
