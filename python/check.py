@@ -13,21 +13,25 @@ CORS(
     supports_credentials=True
 )
 
+
+#ログイン時に使用
 @app.route('/account', methods=['POST'])
 def account_check():
 
     #reactからの値の取得
     accountNumber = request.json['accountNumber']
     password = request.json['password']
+    print(accountNumber,password)
 
-    det = account_search(accountNumber, password)
-    
-    print(det)
+    user = account_search(accountNumber, password)
 
-    if(det):
-        #エラーがないときは200を返す
-        return jsonify(), 200
+    # print(user)
+
+    if(user):
+        print('success\n')
+        return list(user)
     else:
+        print('lost\n')
         return jsonify(), 300
 
 

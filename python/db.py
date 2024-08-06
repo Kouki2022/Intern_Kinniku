@@ -98,15 +98,16 @@ def get_data_sender(sender_id):
     return list1
 
 
-def account_search(id, password):
+#ログイン時に使用
+def account_search(account_number, password):
     conn = sqlite3.connect(dbFile)
     c = conn.cursor()
-    c.execute('select * from users where id =  ? AND password = ?', (id, password))
+    c.execute('select * from users where account_number =  ? AND password = ?', (account_number, password))
     user = c.fetchone()
     conn.commit()
     conn.close()
     if user:
-        return True
+        return user
     else:
         return False
 

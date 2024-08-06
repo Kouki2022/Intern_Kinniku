@@ -1,19 +1,26 @@
 import React from 'react';
 
-const Person = () => {
+const Person = ({user}) => {
+
+    //これがないと動かない
+    if (!user) {
+        return <div>ユーザーデータがありません</div>;
+      }
+    
+    
     return (
         <div className='Person-wrapper'>
             <div className='Person-container'>
-                <img src='https://via.placeholder.com/150' alt='Person' />
+                <img src={user[3]} alt='Person' />
                 <div className='name'>
-                    <h2>サンプル氏名</h2>
+                    <h2>{user[2]}</h2>
                 </div>
             </div>
             <div className='account-details'>
-                <p className='account-number'>口座番号:0000000</p>
+                <p className='account-number'>口座番号:{user[5]}</p>
                 <div className='balance'>
                     <p>預金残高</p>
-                    <h3>50,000円</h3>
+                    <h3>{user[4]}</h3>
                 </div>
             </div>
 

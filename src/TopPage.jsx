@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import Person from './Person';
 import './TopPage.css';
 import './CommonStyles.css'
@@ -9,6 +9,11 @@ import HistoryIcon from '@mui/icons-material/History';
 
 const TopPage = () => {
   const navigate = useNavigate();
+  
+  //ローカルストレージからユーザ情報を取得
+  const user = JSON.parse(localStorage.getItem('user'));
+  console.log(user)
+
 
   return (
     <div className="toppage-container1">
@@ -16,7 +21,7 @@ const TopPage = () => {
         <h1>Quick Transfer</h1>
       </header>
       <main className="content-wrapper1">
-        <Person />
+        <Person user={user} />
         <div className="action-buttons1">
           <button className="action-button1 send-money" onClick={() => navigate('/recipients')}>
             <SendIcon className="icon1" /> 送金する
