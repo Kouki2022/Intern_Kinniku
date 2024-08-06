@@ -98,6 +98,20 @@ def get_data_sender(sender_id):
     return list1
 
 
+def account_search(id, password):
+    conn = sqlite3.connect(dbFile)
+    c = conn.cursor()
+    c.execute('select * from users where id =  ? AND password = ?', (id, password))
+    user = c.fetchone()
+    conn.commit()
+    conn.close()
+    if user:
+        return True
+    else:
+        return False
+
+
+
 
 # テーブルの確認
 cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")

@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import sqlite3
 from flask_cors import CORS
-from db import insert_past, get_data_sender
+from db import insert_past, get_data_sender, account_search
 
 
 
@@ -13,8 +13,28 @@ CORS(
     supports_credentials=True
 )
 
+@app.route('/account', methods=['POST'])
+def account_check():
 
-# 送金のエンドポイント
+    #reactからの値の取得
+    accountNumber = request.json['accountNumber']
+    password = request.json['password']
+
+    det = account_search(accountNumber, password)
+    
+    print(det)
+
+    if(det):
+        #エラーがないときは200を返す
+        return jsonify(), 200
+    else:
+        return jsonify(), 300
+
+
+
+
+
+# テスト
 @app.route('/send', methods=['POST'])
 def create_transaction():
 
@@ -46,6 +66,9 @@ def create_transaction():
     
     #エラーがないときは200を返す
     return jsonify(amount), 200
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
