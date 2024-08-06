@@ -1,0 +1,36 @@
+/* src/CommonStyles.css */
+.common-back-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .common-back-button::before {
+    content: "←";
+    margin-right: 5px;
+  }
+  
+  .common-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #4a4a4a;
+    color: white;
+    height: 44px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .common-header h1 {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0;
+    font-size: 17px;
+    font-weight: 600;
+  }

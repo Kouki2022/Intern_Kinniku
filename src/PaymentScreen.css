@@ -1,0 +1,129 @@
+.payment-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .payment-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .recipient-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+  }
+  
+  .recipient-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  
+  .recipient-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .payment-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .input-wrapper {
+    position: relative;
+  }
+  
+  input[type="number"],
+  textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+  }
+  
+  input[type="number"]:focus,
+  textarea:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .currency {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+  }
+  
+  .balance-info {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+    text-align: right;
+  }
+  
+  textarea {
+    height: 100px;
+    resize: vertical;
+  }
+  
+  .payment-button {
+    background-color: #e91e63;  /* 濃いピンク */
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .payment-button:hover {
+    background-color: #c2185b;  /* さらに濃いピンク */
+  }
+  
+  @media (max-width: 600px) {
+    .payment-container {
+      padding: 20px;
+    }
+  
+    .payment-title {
+      font-size: 20px;
+    }
+  
+    .recipient-name {
+      font-size: 16px;
+    }
+  
+    input[type="number"],
+    textarea,
+    .payment-button {
+      font-size: 16px;
+    }
+  }

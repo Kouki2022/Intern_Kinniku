@@ -1,0 +1,100 @@
+.request-link-created {
+    width: 80%;
+    margin:auto;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 90vh;
+  }
+  
+  .request-link-title{
+    font-size: 6vw;
+    color: #333;
+    margin-bottom: 4vh;
+  }
+  
+  .check-mark {
+    width: 40vw;
+    height: 40vw;
+    max-width: 800px;
+    max-height: 800px;
+    background-color: #e8f5e9;
+    border-radius: 50%;
+    margin: 4vh auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .check-mark svg {
+    width: 60%;
+    height: 60%;
+  }
+  
+  .link-display {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 3vh 10px;
+    margin-bottom: 4vh;
+    word-break: break-all;
+    font-size: 4vw;
+  }
+  
+  button {
+    width: 100%;
+    padding: 3vh 0;
+    margin-bottom: 2vh;
+    border: none;
+    border-radius: 5px;
+    font-size: 4vw;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .copy-button {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .copy-button:hover {
+    background-color: #45a049;
+  }
+  
+  .copy-button.copied {
+    background-color: #45a049;
+  }
+  
+  .back-button {
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  
+  .back-button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  @media (min-width: 600px) {
+    h2 {
+      font-size: 24px;
+    }
+  
+    .link-display {
+      font-size: 16px;
+    }
+  
+    button {
+      font-size: 18px;
+      padding: 15px 0;
+    }
+  }
+  
+  @media (min-height: 800px) {
+    .request-link-created {
+      justify-content: flex-start;
+      padding-top: 10vh;
+    }
+  }
