@@ -21,13 +21,17 @@ def account_check():
     #reactからの値の取得
     accountNumber = request.json['accountNumber']
     password = request.json['password']
+    print(accountNumber,password)
 
     user = account_search(accountNumber, password)
 
+    # print(user)
+
     if(user):
-        #エラーがないときはユーザ情報を返す
+        print('success\n')
         return list(user)
     else:
+        print('lost\n')
         return jsonify(), 300
 
 
