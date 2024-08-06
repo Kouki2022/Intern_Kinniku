@@ -1,0 +1,75 @@
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.request-link-created {
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.request-link-title {
+  background-color: #f23939;
+  color: white;
+  padding: 15px 20px;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.recipient-block {
+  margin-bottom: 20px;
+}
+
+.recipient-name {
+  font-size: 1.2em;
+  color: #000000;
+  margin-bottom: 5px;
+}
+
+.link-display {
+  font-size: 1.2em;
+  color: #0000EE; /* Link color */
+  margin-bottom: 10px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.copy-button, .forward-button, .back-button {
+  padding: 15px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.copy-button {
+  background-color: #f87156;
+}
+
+.forward-button {
+  background-color: #28a745;
+}
+
+.back-button {
+  background-color: #657fff;
+  margin-top: 20px;
+}
+
+.copy-button:hover, .forward-button:hover, .back-button:hover {
+  opacity: 0.9;
+}
+
+.copied {
+  background-color: #4CAF50;
+  color: white;
+}
