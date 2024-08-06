@@ -29,6 +29,13 @@ function Login() {
       if (!response.ok) {
         alert('ログインに失敗しました。正しい口座番号とパスワードを入力してください。');
       } else {
+        const userData = await response.json();
+        //console.log(userData)
+
+        // localStorageにユーザ情報を保存
+        localStorage.setItem('user', JSON.stringify(userData));
+
+        console.log(userData)
         login();
         navigate('/');
       }

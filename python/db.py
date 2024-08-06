@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS transactions (
 
 # テストデータの挿入
 users_data = [
-    (1, 'password1', 'User1', None, 1000.0, 123456, 1001),
+    (1, 'password1', '山田 太郎', None, 50000.0, 123456, 1001),
     (2, 'password2', 'User2', None, 1500.0, 123457, 1002),
     (3, 'password3', 'User3', None, 2000.0, 123458, 1003),
     (4, 'password4', 'User4', None, 2500.0, 123459, 1004),
@@ -79,13 +79,7 @@ VALUES (?, ?, ?, ?, ?, ?)
 
 
 
-def insert_past(data):
-    conn = sqlite3.connect(dbFile)
-    cursor = conn.cursor()
-    cursor.execute('''INSERT INTO transactions (sender_id, receiver_id, amount, type, message, determination)
-    VALUES (?, ?, ?, ?, ?, ?)''', data)
-    conn.commit()
-    conn.close()
+
 
 
 def get_data_sender(sender_id):
@@ -98,17 +92,94 @@ def get_data_sender(sender_id):
     return list1
 
 
-def account_search(id, password):
+#ログイン時に使用
+def account_search(account_number, password):
     conn = sqlite3.connect(dbFile)
     c = conn.cursor()
-    c.execute('select * from users where id =  ? AND password = ?', (id, password))
+    c.execute('select * from users where account_number =  ? AND password = ?', (account_number, password))
     user = c.fetchone()
     conn.commit()
     conn.close()
     if user:
-        return True
+        return user
     else:
         return False
+
+
+#送金の履歴をデータベースに追加
+def insert_send(sender_id, receiver_id, amount, type,  message, determination):
+    conn = sqlite3.connect(dbFile)
+    cursor = conn.cursor()
+    cursor.execute('''INSERT INTO transactions (sender_id, receiver_id, amount, type, message, determination)
+    VALUES (?, ?, ?, ?, ?, ?)''', (sender_id, receiver_id, amount, type,  message, determination))
+
+    #dbに追加されているか確認
+    cursor.execute("SELECT * FROM transactions;")
+    transactions = cursor.fetchall()
+    print("Contents of transactions table:")
+    for transaction in transactions:
+        print(transaction)
+
+    conn.commit()
+    conn.close()
+    return True
+
+
+# 送金の時の残高計算
+def balance_send(sender_id, receiver_id, amount):
+    conn = sqlite3.connect(dbFile)
+    cursor = conn.cursor()
+
+    amount = float(amount)
+
+    # 送信者の残高を取得
+    cursor.execute('SELECT balance FROM users WHERE id = ?', (sender_id,))
+    sender_balance = cursor.fetchone()
+
+    
+    sender_balance = float(sender_balance[0])
+
+    print(sender_balance)
+
+    # 受信者の残高を取得
+    cursor.execute('SELECT balance FROM users WHERE id = ?', (receiver_id,))
+    receiver_balance = cursor.fetchone()
+
+    if receiver_balance is None:
+        print(f"Receiver with id {receiver_id} not found.")
+        conn.close()
+        return False
+
+    receiver_balance = float(receiver_balance[0])
+
+    # 送信者の残高を更新
+    new_sender_balance = sender_balance - amount
+    if new_sender_balance < 0:
+        print("Insufficient funds.")
+        conn.close()
+        return False
+
+    cursor.execute('UPDATE users SET balance = ? WHERE id = ?', (new_sender_balance, sender_id))
+
+    # 受信者の残高を更新
+    new_receiver_balance = receiver_balance + amount
+    cursor.execute('UPDATE users SET balance = ? WHERE id = ?', (new_receiver_balance, receiver_id))
+
+    # 変更をコミット
+    conn.commit()
+
+    # 更新後のDBを出力
+    cursor.execute("SELECT * FROM users;")
+    users = cursor.fetchall()
+    print("Contents of users table:")
+    for user in users:
+        print(user)
+
+    conn.close()
+    return True
+
+
+
 
 
 
