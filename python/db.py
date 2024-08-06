@@ -98,6 +98,7 @@ def get_data_sender(sender_id):
     return list1
 
 
+#ログイン時に使用
 def account_search(id, password):
     conn = sqlite3.connect(dbFile)
     c = conn.cursor()
@@ -106,7 +107,7 @@ def account_search(id, password):
     conn.commit()
     conn.close()
     if user:
-        return True
+        return user
     else:
         return False
 

@@ -29,6 +29,7 @@ function Login() {
       if (!response.ok) {
         alert('ログインに失敗しました。正しい口座番号とパスワードを入力してください。');
       } else {
+        const user_data = await response.json();
         login();
         navigate('/');
       }
