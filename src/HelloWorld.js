@@ -12,6 +12,7 @@ function HelloWorld() {
     const location = useLocation();
     const recipient = location.state?.recipient || { name: 'サンプル氏名', icon: icon1 };
 
+    
     const handleAmountChange = (event) => {
         setAmount(event.target.value);
     };
