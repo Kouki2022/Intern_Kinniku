@@ -83,7 +83,7 @@ def recip():
 
     if(recipient):
         print('success\n')
-        return recipient
+        return list(recipient)
     else:
         print('lost\n')
         return jsonify(), 300
