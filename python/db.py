@@ -98,20 +98,32 @@ def get_data_sender(sender_id):
     return list1
 
 
+##ログイン処理をする関数
 def account_search(id, password):
     conn = sqlite3.connect(dbFile)
     c = conn.cursor()
-    c.execute('select * from users where account_number =  ? AND password = ?', (id, password))
+    c.execute('SELECT id FROM users WHERE account_number = ? AND password = ?', (id, password))
     user = c.fetchone()
-    conn.commit()
+    conn.close()
+    return user[0] if user else None
+
+##TopPage.jsx
+def get_user_info(user_id):
+    conn = sqlite3.connect(dbFile)
+    c = conn.cursor()
+    c.execute('SELECT * FROM users WHERE id = ?', (user_id,))
+    user = c.fetchone()
     conn.close()
     if user:
-        return True
-    else:
-        return False
-
-
-
+        return {
+            'id': user[0],
+            'user_name': user[2],
+            'photo':user[3],
+            'balance': user[4],
+            'account_number': user[5],
+            'registered_id': user[6]
+        }
+    return None
 
 # テーブルの確認
 cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")

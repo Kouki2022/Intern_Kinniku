@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import sqlite3
 from flask_cors import CORS
-from db import insert_past, get_data_sender, account_search
+from db import insert_past, get_data_sender, account_search,get_user_info
 
 
 
@@ -13,29 +13,32 @@ CORS(
     supports_credentials=True
 )
 
+##ログイン用
 @app.route('/account', methods=['POST'])
 def account_check():
-
-    #reactからの値の取得
     accountNumber = request.json['accountNumber']
     password = request.json['password']
     print(accountNumber,password)
 
-    det = account_search(accountNumber, password)
+    user_id = account_search(accountNumber, password)
     
-    # print(det)
-
-    if(det):
+    if user_id:
         print('success\n')
-        #エラーがないときは200を返す
-        return jsonify(), 200
+        return jsonify({'userId': user_id}), 200
     else:
         print('lost\n')
-        return jsonify(), 300
+        return jsonify({'error': 'Invalid credentials'}), 300
 
-
-
-
+#TopPage用
+@app.route('/user_info/<int:user_id>', methods=['GET'])
+def user_info(user_id):
+    user = get_user_info(user_id)
+    if user:
+        return jsonify(user), 200
+    else:
+        return jsonify({'error': 'User not found'}), 404
+    
+    
 
 # テスト
 @app.route('/send', methods=['POST'])
