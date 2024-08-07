@@ -9,11 +9,15 @@
     margin-right: 10px;
     display: flex;
     align-items: center;
+    position: absolute;
+    height: 1vh;
   }
   
   .common-back-button::before {
     content: "←";
     margin-right: 5px;
+    text-align: center;
+    height: 3vh;
   }
   
   .common-header {
@@ -22,7 +26,7 @@
     padding: 10px 15px;
     background-color: #4a4a4a;
     color: white;
-    height: 44px;
+    height: 5vh;
     width: 100%;
     box-sizing: border-box;
   }

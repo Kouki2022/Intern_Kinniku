@@ -43,9 +43,11 @@ function HelloWorld() {
     return (
         <div className="hello-world-container">
             <div className="common-header">
-                <button className="common-back-button" onClick={() => navigate('/recipients')}>
+                <div style={{height: "1vh"}}>
+                    <button className="common-back-button" onClick={() => navigate('/')}>
                     戻る
-                </button>
+                    </button>
+                </div>
                 <h1>送金</h1>
             </div>
             <div className="content-wrapper3">

@@ -75,9 +75,11 @@ const PaymentFlow = () => {
   return (
     <div>
         <div className="common-header">
-            <button className="common-back-button" onClick={() => navigate('/')}>
-            戻る
-            </button>
+            <div style ={{height:"1vh"}}>
+              <button className="common-back-button" onClick={() => navigate('/')}>
+              戻る
+              </button>
+            </div>
             <h1>支払い画面</h1>
          </div>
     

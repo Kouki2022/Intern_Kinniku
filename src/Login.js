@@ -9,33 +9,15 @@ function Login() {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    const account_data = { accountNumber, password };
-    
-    //dbに接続してログイン情報があるか確認
-
-    try {
-      const response = await fetch('http://localhost:5000/account', {
-        method: 'POST',
-        headers: {
-          'Access-Control-Allow-Origin':'*',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(account_data),
-      });
-
-      if (!response.ok) {
-        alert('ログインに失敗しました。正しい口座番号とパスワードを入力してください。');
-      } else {
-        login();
-        navigate('/');
-      }
-    } catch (error) {
-      console.error('Error creating transaction:', error.message);
-      // エラー時の処理
-    }};
+    if (accountNumber === '12345' && password === 'password') {
+      login();
+      navigate('/');
+    } else {
+      alert('ログインに失敗しました。正しい口座番号とパスワードを入力してください。');
+    }
+  };
 
   return (
     <div className="login-container">

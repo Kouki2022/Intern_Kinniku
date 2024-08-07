@@ -27,7 +27,9 @@ const RequestLink = () => {
 
   return (
     <div className="request-link-created">
-      <div className='request-link-title'>請求リンクが作成されました</div>
+      <header className="request-link-header1">
+        <h1>請求リンクが作成されました</h1>
+      </header>
       {recipients.map((recipient, index) => (
         <div key={index} className="recipient-block">
           <div className="recipient-name">宛名: {recipient.name}</div>
@@ -48,7 +50,9 @@ const RequestLink = () => {
           </div>
         </div>
       ))}
-      <button className="back-button" onClick={handleTop}>トップ画面に戻る</button>
+      <div className="back-button-container">
+        <button className="back-button" onClick={handleTop}>トップ画面に戻る</button>
+      </div>
     </div>
   );
 };
