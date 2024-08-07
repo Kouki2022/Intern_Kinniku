@@ -38,19 +38,30 @@ CREATE TABLE IF NOT EXISTS transactions (
     FOREIGN KEY (receiver_id) REFERENCES users(id)
 )
 ''')
-
+with open('../src/images/icon1.png', 'rb') as f:
+    icon1 = f.read()
+with open('../src/images/icon2.png', 'rb') as f:
+    icon2 = f.read()
+with open('../src/images/icon3.png', 'rb') as f:
+    icon3 = f.read()
+with open('../src/images/icon4.png', 'rb') as f:
+    icon4 = f.read()
+with open('../src/images/icon5.png', 'rb') as f:
+    icon5 = f.read()
+with open('../src/images/icon6.png', 'rb') as f:
+    icon6 = f.read()
 # テストデータの挿入
 users_data = [
-    (1, 'password1', 'User1', None, 1000.0, 123456, 1001),
-    (2, 'password2', 'User2', None, 1500.0, 123457, 1002),
-    (3, 'password3', 'User3', None, 2000.0, 123458, 1003),
-    (4, 'password4', 'User4', None, 2500.0, 123459, 1004),
-    (5, 'password5', 'User5', None, 3000.0, 123460, 1005),
-    (6, 'password6', 'User6', None, 3500.0, 123461, 1006),
-    (7, 'password7', 'User7', None, 4000.0, 123462, 1007),
-    (8, 'password8', 'User8', None, 4500.0, 123463, 1008),
-    (9, 'password9', 'User9', None, 5000.0, 123464, 1009),
-    (10, 'password10', 'User10', None, 5500.0, 123465, 1010)
+    (1, '7464', '田中花子', icon1, 1000.0, 123456, 101),
+    (2, '2237', '鈴木かける', icon2, 1500.0, 123457, 102),
+    (3, '6908', '佐藤修二', icon3, 2000.0, 123458, 103),
+    (4, '4637', '安藤太郎', icon4, 2500.0, 123459, 104),
+    (5, '4322', '池上温子', icon5, 3000.0, 123460, 105),
+    (6, '1234', '田川七', icon6, 3500.0, 123461, 106),
+    (7, '4443', '上野篤俊', icon1, 4000.0, 123462, 107),
+    (8, '8393', '太田正', icon2, 4500.0, 123463, 108),
+    (9, '3438', '高橋吉', icon3, 5000.0, 123464, 109),
+    (10, '1432', '小川宗孝', icon4, 5500.0, 123465, 110)
 ]
 
 cursor.executemany('''
@@ -98,7 +109,6 @@ def get_data_sender(sender_id):
     return list1
 
 
-#ログイン時に使用
 def account_search(id, password):
     conn = sqlite3.connect(dbFile)
     c = conn.cursor()
@@ -107,7 +117,7 @@ def account_search(id, password):
     conn.commit()
     conn.close()
     if user:
-        return user
+        return True
     else:
         return False
 
@@ -145,6 +155,7 @@ transactions = cursor.fetchall()
 print("Contents of transactions table:")
 for transaction in transactions:
     print(transaction)
+
 
 # データベース接続の閉鎖
 conn.commit()
