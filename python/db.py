@@ -179,6 +179,35 @@ def balance_send(sender_id, receiver_id, amount):
     return True
 
 
+#recipientを取得
+def get_recip(id1, id2, id3, id4):
+    conn = sqlite3.connect(dbFile)
+    cursor = conn.cursor()
+
+    # レコードを取得
+    cursor.execute('SELECT * FROM users WHERE id = ?', (id1,))
+    record1 = cursor.fetchone()
+
+    cursor.execute('SELECT * FROM users WHERE id = ?', (id2,))
+    record2 = cursor.fetchone()
+
+    cursor.execute('SELECT * FROM users WHERE id = ?', (id3,))
+    record3 = cursor.fetchone()
+
+    cursor.execute('SELECT * FROM users WHERE id = ?', (id4,))
+    record4 = cursor.fetchone()
+
+    # レコードをリストにまとめる
+    records = [record1, record2, record3, record4]
+
+    # データベース接続を閉じる
+    conn.close()
+
+    print
+
+    return records
+
+
 
 
 

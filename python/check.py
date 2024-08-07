@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import sqlite3
 from flask_cors import CORS
-from db import get_data_sender, account_search, insert_send, balance_send
+from db import get_data_sender, account_search, insert_send, balance_send, get_recip
 
 
 
@@ -59,6 +59,31 @@ def send():
     if(det & det2):
         print('success\n')
         return jsonify(), 200
+    else:
+        print('lost\n')
+        return jsonify(), 300
+
+
+
+
+@app.route('/recip', methods=['POST'])
+def recip():
+
+    #reactからの値の取得
+    id1 = request.json['id1']
+    id2 = request.json['id2']
+    id3 = request.json['id3']
+    id4 = request.json['id4']
+
+    recipient = get_recip(id1, id2, id3, id4)
+
+    print(recipient)
+
+    # print(user)
+
+    if(recipient):
+        print('success\n')
+        return recipient
     else:
         print('lost\n')
         return jsonify(), 300
