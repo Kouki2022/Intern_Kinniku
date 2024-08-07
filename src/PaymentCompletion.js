@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './CommonStyles.css';
-import './CompletionScreen.css';
+import './PaymentCompletion.css';
 import approval from './images/approval.png';
 
-function CompletionScreen() {
+function PaymentCompletionScreen() {
   const navigate = useNavigate();
   const location = useLocation();
   const { amount, recipient, message } = location.state || {};
@@ -14,16 +14,16 @@ function CompletionScreen() {
   };
 
   return (
-    <div className="completion-container">
-      <div className="header3">
-        <h1 className="centered-text">送金完了</h1>
+    <div className="Paymentcom-container">
+      <div className="Paymentcom-header3">
+        <h1 className="Paymentcom-text">支払い完了</h1>
       </div>
-      <div className="content-wrapper3">
-        <div className="completion-content">
+      <div className="Paymentcom-wrapper3">
+        <div className="Paymentcom-content">
             <img src={approval} alt="Approval Icon" />
-          <h2>送金処理が完了しました</h2>
+          <h2>請求書の支払いが完了しました</h2>
           {amount && recipient && (
-            <p>{recipient}様へ{amount}円を送金しました。</p>
+            <p>{recipient}様へ{amount}円を支払いました。</p>
           )}
           {message && (
             <p>メッセージ: {message}</p>
@@ -40,4 +40,5 @@ function CompletionScreen() {
   );
 }
 
-export default CompletionScreen;
+export default PaymentCompletionScreen;
+

@@ -1,0 +1,104 @@
+/* App.css */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  justify-content: flex-start; /* 変更: 上部に寄せる */
+  padding-bottom: 60px; /* 変更: ボタンが被らないようにするための余白 */
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.subheader-wrapper {
+  width: 100%;
+  text-align: center;
+}
+
+.subheader {
+  margin: 10px 0 5px 0;
+}
+
+.search-wrapper{
+  width: 80%;
+  margin-bottom: 10px;
+}
+
+.search-wrapper input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.recipients-list {
+  max-height: 200px;
+  overflow-y: scroll;
+  width: 80%;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.recipient-item {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  padding: 10px;
+  margin: 5px 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  text-align: left;
+}
+
+.recipient-item.selected {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.selected-recipients {
+  width: 80%;
+  max-height: 200px; /* 追加: スクロール可能にするための高さ制限 */
+  overflow-y: scroll; /* 追加: スクロール可能にするためのスタイル */
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.selected-recipient-item {
+  background-color: #f5f5f5;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+
+.create-button {
+  /*position: fixed; /* 追加: 画面下部に固定 */
+  /*bottom: 20px; /* 追加: 下部からの距離 */
+  margin-top: 10px;
+  /*left: 50%; /* 追加: 中央に寄せるため */
+  /*transform: translateX(-50%); /* 追加: 中央に寄せるため */
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.create-button:disabled{
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.create-button:hover {
+  background-color: #0056b3;
+}

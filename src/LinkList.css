@@ -1,39 +1,36 @@
-body {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
+/* App.css */
 .request-link-created {
+  width: 100%;
   margin: 0 auto;
-  min-height: 100vh;
-  padding: 20px;
 }
 
-.request-link-title {
+.request-link-header1{
   background-color: #f23939;
+  height: 5vh;
   color: white;
   padding: 15px 20px;
+  text-align: center;
+  justify-content: center;
+}
+
+.request-link-header1 h1{
+  margin: 0;
   font-size: 20px;
   font-weight: 500;
-  text-align: center;
-  margin-bottom: 20px;
 }
 
 .recipient-block {
-  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
 .recipient-name {
-  font-size: 1.2em;
-  color: #000000;
-  margin-bottom: 5px;
+  font-size: 18px;
 }
 
 .link-display {
-  font-size: 1.2em;
-  color: #0000EE; /* Link color */
-  margin-bottom: 10px;
+  margin: 10px 0;
 }
 
 .button-group {
@@ -41,35 +38,26 @@ body {
   gap: 10px;
 }
 
-.copy-button, .forward-button, .back-button {
-  padding: 15px 20px;
-  font-size: 16px;
-  font-weight: 500;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.copy-button {
-  background-color: #f87156;
-}
-
+.copy-button,
 .forward-button {
-  background-color: #28a745;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-.back-button {
-  background-color: #657fff;
-  margin-top: 20px;
+.back-button{
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-.copy-button:hover, .forward-button:hover, .back-button:hover {
-  opacity: 0.9;
-}
-
-.copied {
-  background-color: #4CAF50;
+.copy-button.copied {
+  background-color: #4caf50;
   color: white;
+}
+
+.back-button-container{
+  display:flex;
+  justify-content: center;
+  margin-top:20px;
 }

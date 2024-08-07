@@ -47,9 +47,11 @@ const Request = () => {
   return (
     <div className="request-container">
       <div className="common-header">
-        <button className="common-back-button" onClick={() => navigate('/')}>
-          戻る
-        </button>
+        <div style={{height: "1vh"}}>
+          <button className="common-back-button" onClick={() => navigate('/')}>
+            戻る
+          </button>
+        </div>
         <h1>請求リンクの作成</h1>
       </div>
       <form onSubmit={handleSubmit} className="request-form">
@@ -73,7 +75,7 @@ const Request = () => {
           <textarea id="message" placeholder="飲み会代お願いします！" ref={messageRef}></textarea>
         </div>
         <div className='request-submit-button'>
-          <button type="submit">リンクを作成</button>
+          <button type="submit">宛先を選択</button>
         </div>
       </form>
     </div>
